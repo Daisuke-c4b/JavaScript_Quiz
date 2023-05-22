@@ -1,35 +1,49 @@
 // 配列の中にオブジェクトを入れて更に配列を入れる
 const quiz = [
   {
-    question: "ゲーム市場、最も売れたゲーム機は次のうちどれ？",
+    question: "What is always in front of you but can’t be seen？",
     answers: [
-      "スーパーファミコン",
-      "プレイステーション２",
-      "ニンテンドースイッチ",
-      "ニンテンドーDS",
+      "Mirror（鏡）",
+      "Future（未来）",
+      "Sunglasses（サングラス）",
+      "Hat（帽子）",
     ],
-    correct: "ニンテンドーDS",
+    correct: "Future（未来）",
+    translation: "「いつもあなたの前にあるけど、見えないものは何ですか？」",
+    description:
+      "未来は常に私たちの「前方」にありますが、具体的には見ることができません。",
   },
   {
-    question: "糸井重里が企画に関わった、任天堂の看板ゲームと言えば？",
+    question: "What goes up but never comes down？",
     answers: [
-      "MOTHER2",
-      "スーパーマリオブラザーズ３",
-      "スーパードンキーコング",
-      "星のカービィ",
+      "Rocket（ロケット）",
+      "Age（年齢）",
+      "Balloon（バルーン）",
+      "Bird（鳥）",
     ],
-    correct: "MOTHER2",
+    correct: "Age（年齢）",
+    translation: "「上がるけど決して下がらないものは何ですか？」",
+    description:
+      "年齢は常に上がりますが、一度上がった年齢が下がることはありません。",
   },
   {
-    question: "ファイナルファンタジーⅣの主人公の名前は？",
-    answers: ["フリオニール", "クラウド", "ティーダ", "セシル"],
-    correct: "セシル",
+    question: "What is full of holes but still holds water?",
+    answers: [
+      "Watermelon（スイカ）",
+      "Sponge（スポンジ）",
+      "Tree（木）",
+      "Fishbowl（金魚鉢）",
+    ],
+    correct: "Sponge（スポンジ）",
+    translation: "「穴だらけなのに、水を保持するものは何でしょうか？」",
+    description:
+      "スポンジは多くの小さな穴がありますが、それらの穴は水を吸収し保持することができます。",
   },
 ];
 
 const quizLength = quiz.length;
 let quizIndex = 0;
-let score =0;
+let score = 0;
 
 // HTMLのオブジェクトを取得する場合「$」を入れる
 const $button = document.getElementsByTagName("button");
@@ -51,9 +65,26 @@ setupQuiz();
 const clickHandler = (e) => {
   if (quiz[quizIndex].correct === e.target.textContent) {
     window.alert("正解！");
+    window.alert(
+      "和訳" +
+        quiz[quizIndex].translation +
+        "\n" +
+        "解説：" +
+        quiz[quizIndex].description
+    );
     score++;
   } else {
     window.alert("不正解！");
+    window.alert(
+      "和訳" +
+        quiz[quizIndex].translation +
+        "\n" +
+        "答え：" +
+        quiz[quizIndex].correct +
+        "\n" +
+        "解説：" +
+        quiz[quizIndex].description
+    );
   }
   quizIndex++;
 
@@ -62,7 +93,9 @@ const clickHandler = (e) => {
     setupQuiz();
   } else {
     // 問題数がもうなければこちらを実行
-    window.alert("終了！あなたの正解数は" + score + '/' + quizLength + 'です！');
+    window.alert(
+      "終了！あなたの正解数は" + score + "/" + quizLength + "です！"
+    );
   }
 };
 
