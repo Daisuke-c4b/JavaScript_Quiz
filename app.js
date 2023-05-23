@@ -29,7 +29,7 @@ const quiz = [
 
 const quizLength = quiz.length;
 let quizIndex = 0;
-let score =0;
+let score = 0;
 
 // HTMLのオブジェクトを取得する場合「$」を入れる
 const $button = document.getElementsByTagName("button");
@@ -39,6 +39,8 @@ const buttonLength = $button.length;
 // クイズの問題文、選択肢を定義
 const setupQuiz = () => {
   document.getElementById("js-question").textContent = quiz[quizIndex].question;
+  document.getElementById("question-num").textContent =
+    "Question " + (quizIndex + 1) + " / " + quizLength; //【課題１】クイズの問題数を表示　「Question 1 / 3」
   let buttonIndex = 0;
   while (buttonIndex < buttonLength) {
     // ここに命令文
@@ -62,7 +64,9 @@ const clickHandler = (e) => {
     setupQuiz();
   } else {
     // 問題数がもうなければこちらを実行
-    window.alert("終了！あなたの正解数は" + score + '/' + quizLength + 'です！');
+    window.alert(
+      "終了！あなたの正解数は" + score + "/" + quizLength + "です！"
+    );
   }
 };
 
