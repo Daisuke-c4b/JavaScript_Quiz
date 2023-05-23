@@ -26,6 +26,10 @@ const quiz = [
     correct: "セシル",
   },
 ];
+// 音声データを定義
+const sound_correct = new Audio("./Sound/Quiz-Correct.mp3");
+const sound_wrong = new Audio("./Sound/Quiz-Wrong.mp3");
+const sound_results = new Audio("./Sound/Quiz-Results.mp3");
 
 const quizLength = quiz.length;
 let quizIndex = 0;
@@ -52,9 +56,13 @@ setupQuiz();
 
 const clickHandler = (e) => {
   if (quiz[quizIndex].correct === e.target.textContent) {
+    sound_correct.currentTime = 0; // 【課題3】その他オリジナル　音を鳴らす
+    sound_correct.play();
     window.alert("正解！");
     score++;
   } else {
+    sound_wrong.currentTime = 0;
+    sound_wrong.play();
     window.alert("不正解！");
   }
   quizIndex++;
@@ -64,6 +72,8 @@ const clickHandler = (e) => {
     setupQuiz();
   } else {
     // 問題数がもうなければこちらを実行
+    sound_results.currentTime = 0;
+    sound_results.play();
     window.alert(
       "終了！あなたの正解数は" + score + "/" + quizLength + "です！"
     );
