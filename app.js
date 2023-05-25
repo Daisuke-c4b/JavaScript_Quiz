@@ -54,6 +54,12 @@ const setupQuiz = () => {
 };
 setupQuiz();
 
+// 音声再生が完了したときのイベントリスナーを設定します
+sound_results.addEventListener("ended", function () {
+  // 再生が完了した後にalertを表示します
+  alert("終了！あなたの正解数は" + score + "/" + quizLength + "です！");
+});
+
 const clickHandler = (e) => {
   if (quiz[quizIndex].correct === e.target.textContent) {
     sound_correct.currentTime = 0; // 【課題3】その他オリジナル　音を鳴らす
@@ -74,11 +80,9 @@ const clickHandler = (e) => {
     // 問題数がもうなければこちらを実行
     sound_results.currentTime = 0;
     sound_results.play();
-    window.alert(
-      "終了！あなたの正解数は" + score + "/" + quizLength + "です！"
-    );
   }
 };
+
 
 // ボタンをクリックしたら正誤判定 correctとtextContentを比較する
 // e:イベントのオブジェクト
